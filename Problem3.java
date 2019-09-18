@@ -13,7 +13,7 @@ class Solution {
         int j = 0, partCount = 0;
         List<Integer> ans = new ArrayList();
         for (int i = 0; i < S.length(); ++i) {
-            j = Math.max(j, last[S.charAt(i) - 'a']); // we are taking math.max if the char is not there , then we need to condiser it as Zero
+            j = Math.max(j, last[S.charAt(i) - 'a']); // we are taking math.max becauase we need to find the lenth of maximum substring where a char is appears at most one part.
             if (i == j) { // reset the partition , find the new partition.
                 ans.add(i - partCount + 1);
                 partCount = i + 1;
