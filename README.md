@@ -22,6 +22,8 @@ A string S of lowercase letters is given. We want to partition this string into 
 
 Example 1:
 
+a - 
+
 Input: S = "ababcbacadefegdehijhklij"
 
 Output: [9,7,8]
