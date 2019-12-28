@@ -1,11 +1,9 @@
 /*
 
-Did it run on leetcode : No
-It failed this test case [[9,0],[7,0],[1,9],[3,0],[2,7],[5,3],[6,0],[3,4],[6,2],[5,2]]
-expected:[[3,0],[6,0],[7,0],[5,2],[3,4],[5,3],[6,2],[2,7],[9,0],[1,9]]
-Output:  [[3,0],[6,0],[7,0],[5,2],[3,4],[6,2],[5,3],[2,7],[9,0],[1,9]]
+Did it run on leetcode : Yes
 
-Time complexity: 0(NlogN+N+N)
+
+Time complexity: 0(NlogN+N2) (sort + add)
 Space complexity: 0(N)
 
 Algorithm:
@@ -28,12 +26,18 @@ class Solution {
                              final int[] person2) { 
   
             if (person1[0] > person2[0]) {return -1;}
+            else if(person1[0]==person2[0]){
+                if(person1[1]<person2[1]){
+                    return -1;
+                }else{
+                    return 1;
+                }
+            }
             else {return 1;} 
           } 
         });
         
-        
-        
+ 
         for(int[] person: people){
             queue.add(person[1],person);
         }
