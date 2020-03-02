@@ -1,5 +1,5 @@
-TC: O(n)
-SC: O(n)
+TC: O(nlogn)
+SC: O(n^2)
 
 Runtime: 8 ms, faster than 38.56% of Java online submissions for Queue Reconstruction by Height.
 
