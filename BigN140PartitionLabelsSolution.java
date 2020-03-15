@@ -5,7 +5,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class BigN139PartitionLabelsSolution {
+public class BigN140PartitionLabelsSolution {
 	class Solution {
 		public List<Integer> partitionLabels(String S) {
 			List<Integer> result = new ArrayList<>();
