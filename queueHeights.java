@@ -8,9 +8,7 @@ class Solution {
     public int[][] reconstructQueue(int[][] people) {
         if (people == null || people.length == 0) return new int[0][0];
         Arrays.sort(people, (a,b) -> a[0] == b[0] ? a[1] - b[1] : b[0] - a[0]);
-        
-        for (int[] p: people)
-            System.out.print("[" + p[0] + "," + p[1] + "] ");
+		
         List <int[]> result = new ArrayList<>();
         for (int[] persons: people)
         {
