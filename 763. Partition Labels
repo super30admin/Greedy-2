@@ -1,0 +1,33 @@
+Time complexity: O(n)
+Space complexity: O(1)
+Did this code successfully submitted on leetcode: Yes
+
+class Solution {
+    public List<Integer> partitionLabels(String S) {
+       
+        Map<Character, Integer> map = new HashMap<>();
+        List<Integer> ans = new ArrayList<>();
+        
+        if (S==null || S.length() == 0) return ans;
+        
+        for(int i=0; i<S.length(); i++){
+            map.put(S.charAt(i), i);
+        }
+        
+        int limit = 0;
+        int count = 0;
+        
+        for(int i=0; i<S.length(); ++i){
+            char ch = S.charAt(i);
+            
+            limit = Math.max(limit, map.get(ch));
+            count++;
+            
+            if(i==limit){
+                ans.add(count);
+                count=0;
+            }
+        }
+        return ans;
+    }
+}
