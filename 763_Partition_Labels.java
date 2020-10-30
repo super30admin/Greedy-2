@@ -9,7 +9,11 @@
         # Optimized approach: 
                               
             # 1. 
-                    A) 
+                    A) Create an Hashmap woth its last position of the character in the given string.
+                    B) then start end points from zero and again iterate through string.
+                    C) if value of hm.get(ch) > end then move end to that particlualr index.
+                    D) if (i == end) then add it to the list and move start to i+1
+                    E) At the end, return list.
     */ 
 class Solution {
     public List<Integer> partitionLabels(String S) {

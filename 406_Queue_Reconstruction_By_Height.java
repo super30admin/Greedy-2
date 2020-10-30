@@ -1,6 +1,6 @@
     /*  Explanation
     # Leetcode problem link : https://leetcode.com/problems/queue-reconstruction-by-height/
-    Time Complexity for operators : o(n) .. n is the length people
+    Time Complexity for operators : o(n^2) .. n is the length people AND extra n will take to create array and perticular index.
     Extra Space Complexity for operators : o(n) .. size of list
     Did this code successfully run on Leetcode : NA
     Any problem you faced while coding this : No
@@ -9,12 +9,9 @@
         # Optimized approach: 
                               
             # 1. 
-                    A) Create array result and fill 1 in each position as each person must have one candy.
-                    B) Then start from Front and check ratings[i]>ratings[i-1] if it is then add 1 to the previous and change current
-                        like result[i] = result[i-1] + 1;
-                    C) Now, start from end, check ratings[i]>ratings[i+1] if it is then do below 
-                       result[i] = Math.max(result[i], result[i+1]+1);
-                    D) At the end, sum all the values from array and return the sum.
+                    A) Sort the Array if heighs are equal then sort by frequence else by heights.
+                    B) Create list and add elements like below. list.add(p[1],p);
+                    C) Then, return that list as a array.
     */ 
 
 class Solution {
