@@ -1,3 +1,5 @@
+//Parition labels
+
 // Time Complexity : O(2*n)
 // Space Complexity : O(1) bcoz we are storing alphabets in HAshmap
 // Did this code successfully run on Leetcode : Yes
@@ -8,3 +10,14 @@
 //First store all the characters in HashMAp then we will get to know the last index of each character
 //take start and end pointer then 
 //based on window update the start and end pointer.
+
+
+//Queue Recontruction by height
+
+// Time Complexity : O(n^2)
+// Space Complexity : O(n) bcoz we are using list as extra space
+// Did this code successfully run on Leetcode : Yes
+// Any problem you faced while coding this :No
+
+
+// Your code here along with comments explaining your approach
