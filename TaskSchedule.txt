@@ -1,0 +1,24 @@
+# TC - O(n)
+# SC - O(n)
+# Ran on LC - YES
+
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        if len(tasks) == 0: return 0
+        if n == 0: return len(tasks)
+        hashMap = {}
+        maxFreq = 0
+        maxCount = 0
+        for i in range(len(tasks)):
+            if tasks[i] not in hashMap:
+                hashMap[tasks[i]] = 0
+            hashMap[tasks[i]] += 1
+            maxFreq = max(maxFreq, hashMap[tasks[i]])
+        for key, value in hashMap.items():
+            if value == maxFreq:
+                maxCount += 1
+        partitions = maxFreq - 1
+        empty = partitions * (n - maxCount + 1)
+        pending = len(tasks) - maxFreq * maxCount
+        idle = max(0, empty - pending)
+        return len(tasks) + idle
