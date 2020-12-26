@@ -1,0 +1,24 @@
+# TC - O(n)
+# SC - O(n) 
+# Ran on LC - YES
+
+# Maintain a hashMap of each char and last occurence
+# Use two pointers to define the window based on start and end (change end if hashMap[cur] > end)
+# Once we reach any end pointer, append cur window size to result list
+
+class Solution:
+    def partitionLabels(self, S: str) -> List[int]:
+        if not S: return [0]
+        hashMap = {}
+        for i in range(len(S)):
+            hashMap[S[i]] = i
+        start, end = 0, 0
+        result = []
+        for i in range(len(S)):
+            if hashMap[S[i]] > end:
+                end = hashMap[S[i]]
+            elif hashMap[S[i]] == i == end:
+                result.append(end - start + 1)
+                start = end + 1
+                end = end + 1
+        return result
