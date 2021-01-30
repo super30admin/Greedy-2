@@ -1,0 +1,29 @@
+//TC: O(n)
+//SC: O(1)  --> HashMap constant 26 chars.
+
+//Approach: Idea is to store info about last index of all chars in HashMAp;
+//Use TWO - POINTERS to update end  and add it to return list if all characters are traversed between start and End.
+
+class Solution {
+    public List<Integer> partitionLabels(String S) {
+        if(S == null || S.length() == 0){
+            return new ArrayList<>();
+        }
+        List<Integer> result = new ArrayList<>();
+        //Store last occurence of characters in HashMap
+        HashMap<Character, Integer> hmap = new HashMap<>();
+        for(int i = 0 ; i < S.length() ; i++){
+            hmap.put(S.charAt(i), i);
+        }
+
+        int start = 0, end = 0;
+        for(int i = 0 ; i < S.length() ; i++){
+            end = Math.max(end, hmap.get(S.charAt(i)));
+            if(i == end){
+                result.add(end - start + 1);
+                start = end + 1;        //Updating new start
+            }
+        }
+        return result;
+    }
+}
