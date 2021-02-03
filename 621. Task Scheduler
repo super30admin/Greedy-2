@@ -1,0 +1,43 @@
+//TC: O(exponential)
+//SC: O(1)
+
+//Approach: Idea is to focus on getting comnbination which satisfies both conditions.
+/*HINT: maxFrequency - count of char with highest frequency;
+        maxCount - grouped charsa having same maxFrequency ;
+        partitions: when pattern starts repeating = maxFrequency - 1;
+        empty: partitions * (n(min space b/w 2 same chars) - maxCount(grouped together) + 1);
+        pending: tasks.length - maxCount * maxFrequency;
+        idle: max(0, empty - pending);
+                */ 
+
+class Solution {
+    public int leastInterval(char[] tasks, int n) {
+        if( tasks == null || tasks.length == 0 ){
+            return 0;
+        }
+        /* tasks[] = ["A","A","A","B","B","B"], n = 2 --> 3A && 3B */
+        
+        int maxCount = 0;
+        int maxFrequency = 0;
+        //calculating MaxFrequency from count of each character and 
+        HashMap<Character, Integer> hmap = new HashMap<>();
+        for(char c : tasks){
+            hmap.put(c, hmap.getOrDefault(c, 0)+1);
+            maxFrequency = Math.max(maxFrequency, hmap.get(c));     //updating maxFrequency 
+        }
+        
+        //calculating maxCount
+        for(char c: hmap.keySet()){
+            if(hmap.get(c) == maxFrequency){
+                maxCount++;             //updating maxCount i.e grouping elements
+            }
+        }
+
+        int partition = maxFrequency - 1;       //where the pattern will start repeating 
+        int empty = partition * (n - maxCount + 1);     // min empty in between two same chars also incuding grouped elements
+        int pending = tasks.length - (maxFrequency * maxCount);     //After grouping together different chars -> calculate pending chars
+        int idle = Math.max(0, empty - pending);    //empty - pending = idle
+        
+        return tasks.length + idle;
+    }
+}
