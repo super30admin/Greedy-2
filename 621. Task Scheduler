@@ -1,0 +1,35 @@
+from collections import defaultdict
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        dict1 = defaultdict(int)
+        maxfreq, maxcount = 0,0
+        # fidn the frequency of each task
+        for task in tasks:
+            dict1[task] += 1
+            maxfreq = max(maxfreq, dict1[task])
+            
+        # finding  the maxfreq count
+        for v in dict1.values():
+            if(v == maxfreq):
+                maxcount += 1;
+                
+        # finding the idle slots
+        
+        partitions = maxfreq - 1;
+        empty = (n - (maxcount - 1)) * partitions
+        available = len(tasks) - maxfreq*maxcount;
+        idle = max(0, empty - available);
+        return len(tasks) + idle;
+    
+    '''
+    time complexity = O(n)
+    space complexity = O(n)
+    '''
+        
+        
+        
+        
+        
+        
+        
+        

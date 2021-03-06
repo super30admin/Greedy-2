@@ -1,0 +1,17 @@
+class Solution:
+    def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
+        # sort the people based with first arg in descednign order
+        #and 1st arg in ascending order
+        people = sorted(people, key= lambda x:(x[0],-x[1]),reverse=True);
+        li=[];
+        # iterate through the sorted list and insert
+        # them according to their position
+        for h,k in people:
+            li.insert(k,[h,k]);
+        return li;
+    '''
+    time complexity = O(n^2)
+    space complexity = O(n)
+    '''
+            
+        
