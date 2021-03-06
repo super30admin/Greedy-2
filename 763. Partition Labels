@@ -1,0 +1,36 @@
+class Solution:
+    def partitionLabels(self, S: str) -> List[int]:
+        lastindexdict = {}
+        n = len(S)
+        # find last index of each character of string
+        for i in range(n):
+            lastindexdict[S[i]] = i;
+        
+        # initialize result list to store the lenghts of partitions
+        result = []
+        # initialize the start and end of the current window
+        start = 0
+        last = lastindexdict[S[start]];
+        i = 1;
+        while( i < n):
+            # iterate through the current window
+            while(i <= last):
+                if(lastindexdict[S[i]] > last):
+                    last = lastindexdict[S[i]]
+                i += 1;
+            # current window is finished, append the length of the current window
+            result.append(last-start + 1);
+            if(i == n):
+                break
+            # start the new window
+            start = i;
+            last = lastindexdict[S[start]];
+        return result;
+    '''
+    time complexity = O(n)
+    space complexity = O(1)
+    '''
+            
+            
+        
+        
