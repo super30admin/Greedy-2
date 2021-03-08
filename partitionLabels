@@ -1,0 +1,35 @@
+class Solution {
+    
+    //Time complexity : O(n)
+    //Space complexity : O(1) . Only unique characters are put inside the map.
+    public List<Integer> partitionLabels(String S) {
+        
+        ArrayList<Integer> res = new ArrayList<>();
+        
+        if(S == null || S.length()==0)
+            return res;
+        
+        
+        HashMap<Character,Integer> map = new HashMap<>();
+        //put all the characters and their last index in the map
+        for(int i =0 ;i<S.length();i++){
+            char ch = S.charAt(i);
+            map.put(ch,i);
+        }
+        
+        int start =0;
+        int end =0;
+        
+        // for every character check it's last index. Update the last index if it               is greater than the previous last index 
+        for(int i=0;i<S.length();i++){
+           char c = S.charAt(i);
+           end = Math.max(end,map.get(c));
+           if(i == end)
+           {
+               res.add(end-start+1);
+               start = i+1;
+           }
+        }
+        return res;
+    }
+}
