@@ -1,11 +1,10 @@
 import java.util.*;
 
 public class PartitionString {
-      //Start the first character and find the last occurance of the current      character.
-//Form a window.
-//Iterate all the character inside the window. 
-//- If it exists inside the window i would say it is valid partiion.
-//- We can extend till the current character's last occurance.
+    //Start the first character and find the last occurance of the current character and form a window.
+    //Iterate all the character inside the window. 
+    //- If it exists inside the window i would say it is valid partiion.
+    //- We can extend till the current character's last occurance.
     
     //TC: O(N) - Iterating the entire string only one time
     //SC: O(N) - Using HashMap to save the character entry
