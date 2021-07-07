@@ -1,0 +1,63 @@
+// solution executed on leet code
+// run time-O(n)
+//space-constant
+class Solution {
+    public void swap(int[] arr,int i,int j)
+    {
+        int temp=arr[i];
+        arr[i]=arr[j];
+        arr[j]=temp;
+    }
+    // sort first and last array based on first array
+    public void sort_function(int[] a,int[] b)
+    {
+        for(int i=0;i<a.length-1;i++)
+        {
+            for(int j=i+1;j<a.length;j++)
+            {
+                if(a[i]>a[j])
+                {
+                    swap(a,i,j);
+                    swap(b,i,j);
+                }
+            }
+        }
+    }
+    public List<Integer> partitionLabels(String S) {
+        List<Integer> res=new ArrayList<>();
+        int[] first=new int[26];// used to store the starting index of each ele
+        int[] last=new int[26];// used to store last or end index of each ele
+        for(int i=0;i<S.length();i++)
+        {
+            if(first[S.charAt(i)-'a']==0)
+                first[S.charAt(i)-'a']=i+1;
+        }
+        for(int i=S.length()-1;i>=0;i--)
+        {
+            if(last[S.charAt(i)-'a']==0)
+                last[S.charAt(i)-'a']=i+1;
+        }
+        int max=0;
+        sort_function(first,last);
+     //   for(int i=0;i<first.length;i++)
+       //     System.out.println(first[i]+" "+last[i]);
+        for(int i=0;i<first.length;i++)
+        {
+            max=last[i];
+            if(first[i]!=0)// donot consider if zero present
+            {
+                int fpoint=first[i];
+                int lpoint=last[i];
+                while(i<25 && max>first[i+1])
+                {
+                    max=Math.max(max,last[i+1]);
+                    i++;
+                }
+                res.add(max-fpoint+1);
+                
+            }
+            
+        }
+        return res;
+    }
+}
