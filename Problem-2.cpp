@@ -1,4 +1,5 @@
 //as taught by sir
+//O(n^2). O(1) depending on sort 
 bool cmp(vector <int> a, vector <int> b){
    if(a[0] == b[0])
        return a[1] > b[1];
