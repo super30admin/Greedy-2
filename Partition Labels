@@ -1,0 +1,37 @@
+//TC:- O(n)
+//Sc:- O(1)->26
+
+class Solution {
+    public List<Integer> partitionLabels(String s) {
+        
+        int start = 0;
+        int end = 0;
+        
+        HashMap<Character, Integer> lastOccurence = new HashMap<>();
+        List<Integer> partitions = new ArrayList<>();
+        
+        for(int i = 0; i <s.length(); i++)
+        {
+            lastOccurence.put(s.charAt(i), i);
+        }
+        
+        for(int i = 0; i <s.length(); i++)
+        {
+            Character c = s.charAt(i);
+            
+            if(lastOccurence.get(c) > end)
+            {
+                end = lastOccurence.get(c);
+            }
+            
+            if(end == i)
+            {
+                partitions.add(end - start + 1);
+                start = i+1;
+                
+            }
+        }
+        return partitions;
+        
+    }
+}
