@@ -1,9 +1,9 @@
 //TC : O(N^2)// (Becuase when we found which pair having greater height,  
-            //we will start settling up pairs 
+            //we will start settling up pairs     
             //So, it can take O(N) for settling up for doing this Operation
             //That's why O(N^2) will be in worst case     
 //SC : O(N) -- //For stack 
-    
+     
 class Solution {
     public int[][] reconstructQueue(int[][] people) {
         List<int[]> li = new ArrayList<>();
