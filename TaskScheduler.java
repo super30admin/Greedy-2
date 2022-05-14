@@ -1,5 +1,6 @@
-//TC : O(N)
-//SC : O(1)
+//TC : O(N) -- Traversing tasks ARRAY in linear time for calculating maxFreq and characters with maxFreq.
+
+//SC : O(1)       
 
 class Solution {
     public int leastInterval(char[] tasks, int n) {

@@ -1,5 +1,5 @@
-//TC : O(N)
-//SC : O(1) 
+//TC : O(N) - Traversing string in linea time for calculating partitions
+//SC : O(1) //Map use constant space and res list is O/P data structure        
 class Solution {
     public List<Integer> partitionLabels(String s) {
         List<Integer> res = new ArrayList<>();
