@@ -19,7 +19,7 @@ public class QueueReconstruction {
         for(int[] person : people) { // TC : O(n^2)
             result.add(person[1], person);
         }
-
+        // Reference -> https://leetcode.com/discuss/general-discussion/910108/java-converting-2d-list-into-array
         return result.toArray(new int[0][]); // it can be new int[people.length][] as well but not any random value
                                             // if it would've been new int[10][], resultant array will have null elements once the collection is over
     }
