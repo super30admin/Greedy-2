@@ -3,7 +3,7 @@ import java.util.Map;
 
 public class Problem1 {
     // TC : O(n)
-    // SC : O(n)
+    // SC : O(1)
     public int leastInterval(char[] tasks, int n) {
         if (tasks == null || tasks.length == 0) return 0;
         if (n == 0) return tasks.length;
