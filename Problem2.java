@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class Problem2 {
-    // TC : O(nlogn)
+    // TC : O(n^2)
     // SC : O(n)
     public int[][] reconstructQueue(int[][] people) {
         if (people == null) return new int[][]{};
