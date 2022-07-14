@@ -17,7 +17,7 @@ class Solution:
 
 
 
-# Alternative using class objects
+# Alternative using class objects with extra space
 
 
 class People:
