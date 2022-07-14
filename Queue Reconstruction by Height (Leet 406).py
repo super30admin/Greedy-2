@@ -14,3 +14,25 @@ class Solution:
             res.insert(p[1],p)
             
         return res
+
+
+
+# Alternative using class objects
+
+
+class People:
+
+    '''
+    Priority given to height and then to frequency
+    '''
+
+    def __init__(self,height,frequency):
+        self.height = height
+        self.frequency = frequency
+
+    def __lt__(self, other):
+        if (self.height == other.height):
+            return self.frequency < other.frequency
+        return self.height > other.height
+
+# arr.sort() should work
