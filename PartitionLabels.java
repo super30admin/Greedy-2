@@ -2,8 +2,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-// Time Complexity :
-// Space Complexity :
+// Time Complexity : O(n) where n = length of string
+// Space Complexity : O(1)
 // Did this code successfully run on Leetcode :
 // Any problem you faced while coding this :
 
