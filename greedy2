@@ -1,0 +1,71 @@
+#Task Scheduler
+#Time complexity  - O(N * n) [N is the number of tasks and n is the cool-off period]
+#Space complexity - O(1) 
+from heapq import heappush, heappop
+from collections import Counter
+class Solution:
+    def leastInterval(self, tasks, n):
+        """
+        :type tasks: List[str]
+        :type n: int
+        :rtype: int
+        """
+        curr_time, h = 0, []
+        for k,v in Counter(tasks).items():
+            heappush(h, (-1*v, k))
+        while h:
+            i, temp = 0, []
+            while i <= n:
+                curr_time += 1
+                if h:
+                    x,y = heappop(h)
+                    if x != -1:
+                        temp.append((x+1,y))
+                if not h and not temp:
+                    break
+                else:
+                    i += 1
+            for item in temp:
+                heappush(h, item)
+        return curr_time
+   
+#Queue Reconstruction by Height
+#Time - O(nlogn + n * n) 
+#Space - O(1) 
+
+
+class Solution:
+    def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
+        output=[] 
+        
+        # sort the array in decreasing order of height 
+        # within the same height group, you would sort it in increasing order of k
+        # eg: Input : [[7,0],[4,4],[7,1],[5,0],[6,1],[5,2]]
+        # after sorting: [[7,0],[7,1],[6,1],[5,0],[5,2],[4,4]]
+        people.sort(key=lambda x: (-x[0], x[1]))                
+        for a in people:
+            # Now let's start the greedy here
+            # We insert the entry in the output array based on the k value
+            # k will act as a position within the array
+            output.insert(a[1], a)
+        
+        return output  
+#Partition Labels
+#TC: O(n)
+#SC: O(1)
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        L = len(s)
+        last = {s[i]: i for i in range(L)} # last appearance of the letter
+        i, ans = 0, []
+        while i < L:
+            end, j = last[s[i]], i + 1
+            while j < end: # validation of the part [i, end]
+                if last[s[j]] > end:
+                    end = last[s[j]] # extend the part
+                j += 1
+           
+            ans.append(end - i + 1)
+            i = end + 1
+            
+        return ans
