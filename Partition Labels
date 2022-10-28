@@ -1,0 +1,18 @@
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        res = []
+        a = defaultdict(int)
+        for i, ch in enumerate(s):
+            a[ch] = max(a[ch], i)
+        b = 0
+        l = 0
+        for i, ch in enumerate(s):
+            b = max(b, a[ch])
+            if i == b:
+                res.append(b - l + 1)
+                l = b + 1
+        return res
+    
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+# Successfully implemented on Leetcode

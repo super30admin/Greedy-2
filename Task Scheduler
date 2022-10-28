@@ -1,0 +1,12 @@
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        c = Counter(tasks)
+        f = c[max(c, key=c.get)]
+        m = Counter(c.values())[f]
+        a = len(tasks)
+        b = (f - 1) * max((n + 1), m) + m
+        return max(a, b)
+    
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+# Successfully implemented on Leetcode

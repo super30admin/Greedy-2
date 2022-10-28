@@ -1,0 +1,11 @@
+class Solution:
+    def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
+        people.sort(key=lambda x:(-x[0], x[1]))
+        res = []
+        for j, i in people:
+            res.insert(i, (j, i))
+        return res
+    
+# Time Complexity: O(n^2)
+# Space Complexity: O(logn)
+# Successfully implemented on Leetcode
