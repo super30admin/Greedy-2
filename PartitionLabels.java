@@ -1,5 +1,6 @@
 // Time Complexity: O(N)
 // Space Complexity: O(1)
+import java.util.*;
 class Solution {
     public List<Integer> partitionLabels(String s) {
 
