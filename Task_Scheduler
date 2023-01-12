@@ -1,0 +1,30 @@
+//TimeComplexity O(n)
+//SpaceComplexity O(1)
+
+class Solution {
+    public int leastInterval(char[] tasks, int n) {
+        
+        HashMap<Character,Integer> map = new HashMap<>();
+        int maxFreq = 0;
+        int maxCount = 0;
+
+        for(char c : tasks){
+            map.put(c, map.getOrDefault(c,0)+1);
+            maxFreq = Math.max(maxFreq,map.get(c));
+        }
+
+         for(char c : map.keySet()){
+           if(map.get(c) == maxFreq){
+               maxCount++;
+           }
+        }
+
+        int partitions = maxFreq-1;
+        int available_slots = partitions * (n - (maxCount-1));
+        
+        int rem_count = tasks.length - (maxFreq * maxCount);
+        int empty_slots = Math.max(0, available_slots - rem_count);
+
+        return tasks.length + empty_slots;
+    }
+}
