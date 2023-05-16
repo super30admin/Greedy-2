@@ -1,0 +1,28 @@
+/*
+Time Complexity - O(n)
+Space Complexity - O(n)
+ */
+class Solution {
+    public int leastInterval(char[] tasks, int n) {
+        
+        Map<Character, Integer> map = new HashMap<Character, Integer>();
+        int maxFreq = 0;
+        int maxCount = 0;
+
+        for(int i = 0; i < tasks.length; i++){
+            map.put(tasks[i], map.getOrDefault(tasks[i], 0) + 1);
+            maxFreq = Math.max(maxFreq, map.get(tasks[i]));
+        }
+
+        for(Character ch : map.keySet()){
+            if(map.get(ch) == maxFreq)
+                maxCount++;
+        }
+
+        int partitions = maxFreq - 1;
+        int available = partitions * (n - (maxCount - 1));
+        int pending = tasks.length - (maxFreq * maxCount);
+        int idleTime = Math.max(0, available - pending);
+        return tasks.length + idleTime;
+    }
+}
