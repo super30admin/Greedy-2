@@ -1,0 +1,42 @@
+// Time Complexity : O(n)
+// Space Complexity : O(1)
+// Did this code successfully run on Leetcode : yes
+// Any problem you faced while coding this : no
+
+class Solution {
+    public List<Integer> partitionLabels(String s) {
+        if(s == null || s.length() == 0) {
+            return new ArrayList<>();
+        }
+        HashMap<Character, Integer> map = new HashMap<>();
+        int n = s.length();
+        for(int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            map.put(c, i);
+        }
+        List<Integer> result = new ArrayList<>();
+        int p1 = 0, p2 = 0;
+        int lastPart = 0;
+        // while(p1 < n && p2 < n) {
+        //     if(p2 == map.get(s.charAt(p1))) {
+        //         result.add(p2 + 1 - lastPart);
+        //         lastPart = p2 + 1;
+        //         p2++;
+        //         p1 = p2;
+        //     } else if(map.get(s.charAt(p2)) <= map.get(s.charAt(p1))) {
+        //         p2++;
+        //     } else {
+        //         p1 = p2;
+        //     }
+        // }
+        for(int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            p2 = Math.max(p2, map.get(c));
+            if(i == p2) {
+                result.add(p2 - p1 + 1); 
+                p1 = p2 + 1;
+            }
+        }
+        return result;
+    }
+}
