@@ -1,0 +1,25 @@
+class Solution {
+    public int leastInterval(char[] tasks, int n) {
+         HashMap<Character, Integer> map = new HashMap<>();
+        int max_freq = 0 , max_count = 0;
+
+        for(char c : tasks){
+            map.put(c, map.getOrDefault(c,0)+1);
+            max_freq = Math.max(max_freq, map.get(c));
+        }
+
+        for(char c: map.keySet()){
+            
+            if(map.get(c) == max_freq){
+                max_count++;
+            }
+        }
+
+        int partitions = max_freq - 1;
+        int empty_slots = partitions *(n - (max_count - 1));
+        int pending = tasks.length - (max_freq * max_count);
+        int idle_slots = Math.max(0,empty_slots - pending);
+        int total = tasks.length + idle_slots;
+        return total;
+    }
+}
