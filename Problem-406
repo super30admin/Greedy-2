@@ -1,0 +1,112 @@
+/*
+Time Complexity: n3
+Leetcode : Unsuccessful (TLE : 27/37 passed)
+
+Approach:
+
+Put 2nd element of the array in hashmap as key i.e number of people ahead of a particular member and values as arraylist of height.
+
+we know that maximum number of people are 1100.
+
+So starting from 0 till 1100 , start checking lists in hashmap, which would give us list of people, who have equal number of people ahead of them whose height is greater.
+
+further, for each such element, iterate through the result array.
+
+the idea is that level by level, we would check the right place of each element, and insert at the right place.
+
+
+
+*/
+
+class Solution {
+    public int[][] reconstructQueue(int[][] people) {
+        
+        HashMap<Integer,List<Integer>> hm = new HashMap<>();
+     //   HashMap<Integer,List<Integer>> res = new HashMap<>();
+        
+        List<int []> res = new ArrayList<int []>();
+        int [][] result = new int [people.length][2];
+        int rc=0;
+        for(int i=0;i<people.length;i++)
+        {
+            if(hm.containsKey(people[i][1]))
+            {
+               
+                List<Integer> ll = hm.get(people[i][1]);
+                ll.add(people[i][0]);
+                hm.put(people[i][1],ll);
+            }
+            else
+            {
+                List<Integer> al = new ArrayList<>();
+                al.add(people[i][0]);
+                hm.put(people[i][1],al);
+            }
+        }
+        
+        
+        for(int i=0;i<1100;i++)
+        {
+            if(hm.containsKey(i))
+            {
+                List<Integer> ls = new ArrayList<Integer>();
+                
+                ls=hm.get(i);
+              
+        //        Collections.sort(ls);
+                
+                
+                for(int j=0;j<ls.size();j++)
+                {
+                    int [] temp= new int [2];
+                    temp[0]=ls.get(j);
+                    temp[1]=i;
+                    
+                    int count=0;
+                    int len= res.size();
+                
+                    for(int k=0;k<len;k++)
+                    {
+                        
+                        //count ++;
+                        int [] tm = new int [2];
+                        tm=res.get(k).clone();
+                       
+                        if(temp[0]<=tm[0]) count++;
+                        
+            //            System.out.println(res.get(1)[0]);
+                        if(count<=temp[1])
+                        {
+                        //    res.add(temp);
+                            System.out.println("in if condition continue..");
+                        //    if(temp[0])
+                            
+                            continue;
+                        }
+                        else{
+                            res.add(k,temp);
+                            break;
+               
+                        }
+                    }
+                   if(res.size()==len) res.add(temp);
+                    
+                }                
+            }
+        }
+   
+    //    System.out.println(res.get(0)[0]);
+        int [][] finalresult = new int [res.size()][2];
+        
+        for(int i=0;i<res.size();i++)
+        {
+            finalresult[i][0]=res.get(i)[0];
+            
+            finalresult[i][1]=res.get(i)[1];
+            
+        }
+        
+        return finalresult;
+        
+    }
+}
