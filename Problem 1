@@ -1,0 +1,11 @@
+class Solution:
+    def leastInterval(self, tasks: List[str], n: int) -> int:
+        arr = [0] * 26
+        for task in tasks:
+            arr[ord(task) - 65] += 1
+    
+        max_freq = max(arr)
+        no_of_maxs = arr.count(max_freq)
+    
+        size = ((max_freq - 1) * (n + 1)) + no_of_maxs
+        return max(len(tasks), size)

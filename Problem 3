@@ -1,0 +1,14 @@
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        lastIdx = {char: idx for idx, char in enumerate(s)}
+        
+        res = []
+        curLast, accu = 0, 0
+        
+        for i, char in enumerate(s):
+            curLast = max(curLast, lastIdx[char])
+            if i == curLast:
+                res.append(i + 1 - accu)
+                accu = i + 1
+        
+        return res
