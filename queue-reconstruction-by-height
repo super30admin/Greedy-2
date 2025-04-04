@@ -1,0 +1,25 @@
+// Time Complexity :O(nlogn)+O(n^2)
+// Space Complexity :// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+
+
+// Your code here along with comments explaining your approach:Greedy approach
+
+class Solution {
+    public int[][] reconstructQueue(int[][] people) {
+        List<int[]> li = new ArrayList<>();
+        //heights decesending order and number of persons ascending order
+        Arrays.sort(people, (a, b) -> {//O(nlogn)
+            if (a[0] == b[0]) {
+                return a[1] - b[1];
+            }
+            return b[0] - a[0];
+        });
+       
+        for (int[] key : people) {//O(n)
+            li.add(key[1],key);//O(n)
+        }
+        return li.toArray(new int[0][]);
+    }
+
+}

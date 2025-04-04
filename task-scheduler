@@ -1,0 +1,30 @@
+// Time Complexity :O(2n)->O(n)
+// Space Complexity :O(n)->O(1)
+// Did this code successfully run on Leetcode :yes
+// Any problem you faced while coding this :no
+
+
+// Your code here along with comments explaining your approach:Greedy Approach
+
+class Solution {
+    public int leastInterval(char[] tasks, int n) {
+        HashMap<Character, Integer> map = new HashMap<>();//O(n)=>O(1)
+        int maxFreq = 0;
+        for (char ch : tasks) {//frequency map of tasks and finding max frequency //O(n)
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
+            maxFreq = Math.max(maxFreq, map.get(ch));
+        }
+        int maxCount = 0;//to count number of max freq tasks
+        for (char ch : map.keySet()) {//O(n)
+            if (maxFreq == map.get(ch)) {
+                maxCount++;
+            }
+        }
+        int numberOfPartitions = maxFreq - 1; //possible partitions
+        int numberOfAvil = numberOfPartitions *( n - (maxCount - 1));//if have multiple max freq(maxCount) and -1 is beauces one maxcount already processed in first step
+        int pendingTasks = tasks.length -(maxCount * maxFreq);//all max freq of max count processed as grounp
+        int ideal = Math.max(0, numberOfAvil - pendingTasks);
+  return tasks.length + ideal;
+
+    }
+}
