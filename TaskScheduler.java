@@ -31,13 +31,22 @@ public class TaskScheduler {
             }
         }
 
+        // If a task occurs x times, we can only have x-1 gaps in between them
         int partitions = maxFreq - 1;
-        int empty = partitions * (n - (maxCount - 1));
+
+        // If there are multiple tasks with same frequency, since we already anchor one task,
+        // we place another ones with same frequency and find empty slots based on that
+        int empty = partitions * (n - (maxCount - 1)); 
+
+
         int pending = tasks.length - (maxFreq * maxCount);
         int idle = Math.max(0, empty - pending);
         return tasks.length + idle;
     }
     public static void main(String[] args) {
         // Your code here
+        TaskScheduler obj = new TaskScheduler();
+        int total = obj.leastInterval(new char[]{'A', 'A', 'A'}, 3);
+        assert (total == 9);
     }
 }
