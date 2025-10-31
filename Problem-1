@@ -1,0 +1,29 @@
+// Time Complexity : O(m), m->number of tasks
+// Space Complexity : O(p), p->number of unique tasks
+
+// Store the frequency of the characters in a hashmap and find the max frequency
+// Find the number of tasks pending to be scheduled and the available slots left after scheduling the tasks with max frequency
+// Find the idle slots and return total tasks + idle slots
+
+class Solution {
+    public int leastInterval(char[] tasks, int n) {
+        int maxFreq = 0;
+        Map<Character, Integer> mp = new HashMap<>();
+        for(char ch : tasks) {
+            mp.put(ch, mp.getOrDefault(ch, 0) + 1);
+            maxFreq = Math.max(maxFreq, mp.get(ch));
+        }
+
+        int maxFreqCount = 0;
+        for(Character key : mp.keySet()) {
+            if(mp.get(key) == maxFreq)
+                maxFreqCount++;
+        }
+
+        int partitions = maxFreq - 1;
+        int pending = tasks.length - maxFreq * maxFreqCount;
+        int available = partitions * (n - (maxFreqCount - 1));
+        int idleSlots = Math.max(0, available - pending);
+        return tasks.length + idleSlots;
+    }
+}

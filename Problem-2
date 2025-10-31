@@ -1,0 +1,24 @@
+// Time Complexity : O(n^2)
+// Space Complexity : O(n)
+
+// Sort the people by descending order of height and then by the number of people in front of them
+// Iterate through the sorted array and place the people at the index mentioned by the number of people in front of them
+// Return the new array
+
+class Solution {
+    public int[][] reconstructQueue(int[][] people) {
+        // Sort the array
+        Arrays.sort(people, (a,b) -> {
+            if(a[0] == b[0])
+                return a[1] - b[1];
+            return b[0] - a[0];
+        });
+
+        // Position people according to the number of people in front of them
+        List<int[]> result = new ArrayList<>();
+        for(int i = 0; i < people.length; i++) {
+            result.add(people[i][1], people[i]);
+        }
+        return result.toArray(new int[0][0]);
+    }
+}

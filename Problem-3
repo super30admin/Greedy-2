@@ -1,0 +1,33 @@
+// Time Complexity : O(n)
+// Space Complexity : O(1)
+
+// Store the character and its last index in a hashmap
+// Iterate through the string and keep the last index of the current character to be the end of that partition
+// If any character in between has its last index beyond it, then extend the partition else start a new partition from end + 1
+// Store the lengths of the partitions and return it
+
+class Solution {
+    public List<Integer> partitionLabels(String s) {
+        HashMap<Character, Integer> mp = new HashMap<>();
+        // Store character and its last index
+        for(int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            mp.put(ch, i);
+        }
+        List<Integer> result = new ArrayList<>();
+        int start = 0;
+        int end = 0;
+        for(int i = 0; i < s.length(); i++) {
+            char ch = s.charAt(i);
+            // if current character's last index is after end, then update
+            end = Math.max(end, mp.get(ch));
+
+            // Reached end of current partition, add length to result
+            if(i == end) {
+                result.add(end - start + 1);
+                start = end + 1;
+            }
+        }
+        return result;
+    }
+}
