@@ -10,12 +10,11 @@
 
 
 class Solution:
-    def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
-        if not people:
-            return None
+    def reconstructQueue(self, people: list[list[int]]) -> list[list[int]]:
         people.sort(key=lambda x: (-x[0], x[1]))
-        print(people)
-        res = []
+        result = []
         for i in range(len(people)):
-            res.insert(people[i][1], people[i])
-        return res
+            index = people[i][1]
+            result.insert(index, people[i])
+        return result
+#Time - O(N^2)

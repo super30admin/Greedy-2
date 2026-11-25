@@ -14,20 +14,16 @@
 
 
 class Solution:
-    def partitionLabels(self, S: str) -> List[int]:
-        if not S:
-            return None
-        dict = {}
-        for i in range(len(S)):
-            dict[S[i]] = i
-
+    def partitionLabels(self, s: str) -> list[int]:
+        strdict = {}
         start = 0
         end = 0
-        res = []
-        for i in range(len(S)):
-            end = max(end, dict[S[i]])
+        result = []
+        for i in range(len(s)):
+            strdict[s[i]] = i
+        for i in range(len(s)):
+            end = max(end, strdict[s[i]])
             if i == end:
-                res.append(end - start + 1)
+                result.append(end - start + 1)
                 start = end + 1
-
-        return res
+        return result
